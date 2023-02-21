@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,11 +11,12 @@ public class GameManager : MonoBehaviour
     public float spawnRate = 1f;
     public List<Vector3> targetPositionsInScene;
     public Vector3 randomPos;
-    
+
     // Texto
     public TextMeshProUGUI scoreText;
     private int score;
-   
+    public GameObject gameOverPanel;
+    
     private float minX = -3.75f;
     private float minY = -3.75f;
     private float distanceBetweenSquares = 2.5f;
@@ -27,6 +29,19 @@ public class GameManager : MonoBehaviour
        
         score = 0;
         scoreText.text = $"Score: \n{score}";    // La barra n (\n) es un salto de línea
+
+        gameOverPanel.gameObject.SetActive(false);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void GameOver()
+    {
+        isGameOver = true;
+        gameOverPanel.gameObject.SetActive(true);
     }
 
     private Vector3 RandomSpawnPosition()
@@ -44,7 +59,7 @@ public class GameManager : MonoBehaviour
             int randomIndex = Random.Range(0, targetPrefabs.Length);
             
             randomPos = RandomSpawnPosition();
-            while (targetPositionsInScene.Contains(randomPos))
+            while (targetPositionsInScene.Contains(randomPos))  // Si la posicion está ocupada, busca otra posición para que aparezca el siguiente objeto
             {
                 randomPos = RandomSpawnPosition();
             }
