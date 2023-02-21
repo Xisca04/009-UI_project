@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     private int score;
     public GameObject gameOverPanel;
+    public GameObject startGamePanel;
     
     private float minX = -3.75f;
     private float minY = -3.75f;
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = $"Score: \n{score}";    // La barra n (\n) es un salto de línea
 
         gameOverPanel.gameObject.SetActive(false);
+        startGamePanel.gameObject.SetActive(true);
     }
 
     public void RestartGame()

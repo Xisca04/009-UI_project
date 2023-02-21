@@ -2223,6 +2223,7 @@ MonoBehaviour:
   randomPos: {x: 0, y: 0, z: 0}
   scoreText: {fileID: 297823309}
   gameOverPanel: {fileID: 1182371892}
+  startGamePanel: {fileID: 887722348}
 --- !u!1 &2120347543
 GameObject:
   m_ObjectHideFlags: 0
