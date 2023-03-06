@@ -6,15 +6,16 @@ public class Target : MonoBehaviour
 {
     // Destrucción del game object al pasar un tiempo - AUTODESTRUCCIÓN
 
-    private float lifeTime = 2f;
-    public int points;
+    public int points;   // Puntuación de los objetos (positiva para GOOD y 0 para BAD)
     public GameObject explosionParticle;
+    
+    private float lifeTime = 2f;
     private GameManager gameManager;
 
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        Destroy(gameObject, lifeTime);
+        Destroy(gameObject, lifeTime);  // Autodestrucción
     }
 
     private void OnMouseDown() // Al hacer click se autodestruye
@@ -23,7 +24,7 @@ public class Target : MonoBehaviour
         {
             if (gameObject.CompareTag("Bad"))
             {
-                gameManager.GameOver();
+                gameManager.MinusLife();
             }
             else if (gameObject.CompareTag("Good"))
             {

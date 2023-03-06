@@ -8,33 +8,29 @@ public class GameManager : MonoBehaviour
 {
     public GameObject[] targetPrefabs;
     public bool isGameOver;
-    public float spawnRate = 1f;
     public List<Vector3> targetPositionsInScene;
     public Vector3 randomPos;
 
     // Texto
     public TextMeshProUGUI scoreText;
-    private int score;
+    public TextMeshProUGUI livesText;
     public GameObject gameOverPanel;
     public GameObject startGamePanel;
-    
+    private int score;  // Puntuación total
+
+    private float spawnRate = 1f; // Tiempo que tardan en aparecer los objetos
     private float minX = -3.75f;
     private float minY = -3.75f;
     private float distanceBetweenSquares = 2.5f;
-    
 
+    private int lives = 3;
+    
     private void Start()
     {
-        isGameOver = false;
-        StartCoroutine("SpawnRandomTarget");
-       
-        score = 0;
-        scoreText.text = $"Score: \n{score}";    // La barra n (\n) es un salto de línea
-
-        gameOverPanel.gameObject.SetActive(false);
-        startGamePanel.gameObject.SetActive(true);
+        startGamePanel.SetActive(true);
+        gameOverPanel.SetActive(false);
     }
-
+    
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -74,6 +70,31 @@ public class GameManager : MonoBehaviour
     public void UpdateScore(int newPoints)
     {
         score += newPoints;
-        scoreText.text = $"Score: \n{score}";
+        scoreText.text = $"Score: \n{score}";  // \n = salto de línea
     }
-}
+
+    public void SatrtGame (int difficulty)
+    {
+        isGameOver = false;
+        score = 0;
+        UpdateScore(0);
+        lives = 3;
+        livesText.text = $"Lives: {lives}";
+        spawnRate /= difficulty;
+        StartCoroutine(SpawnRandomTarget());
+        startGamePanel.SetActive(false);
+        gameOverPanel.SetActive(false);
+    }
+    
+    public void MinusLife()
+    {
+        lives--;
+        livesText.text = $"Lives: {lives}";
+
+        if (lives <= 0)
+        {
+            GameOver();
+        }
+    }
+}   
+
