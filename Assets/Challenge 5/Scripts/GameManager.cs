@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public bool isGameOver;
     public List<Vector3> targetPositionsInScene;
     public Vector3 randomPos;
+    public bool hasPowerupShield;
 
     // Texto
     public TextMeshProUGUI scoreText;

@@ -2395,9 +2395,11 @@ MonoBehaviour:
   - {fileID: 8800217622826867933, guid: 547ed294beec7e24a9877ff39f226094, type: 3}
   - {fileID: 1853300750889427776, guid: 54873fa8b36d63447b7b9af3dc733e16, type: 3}
   - {fileID: 7331898805276354435, guid: ebae824785ff09e428aeefee16efd1c0, type: 3}
+  - {fileID: 2216343821094630092, guid: d659d862a10fad74cb2eee4c47555cc8, type: 3}
   isGameOver: 0
   targetPositionsInScene: []
   randomPos: {x: 0, y: 0, z: 0}
+  hasPowerupShield: 0
   scoreText: {fileID: 297823309}
   livesText: {fileID: 167036652}
   gameOverPanel: {fileID: 1182371892}

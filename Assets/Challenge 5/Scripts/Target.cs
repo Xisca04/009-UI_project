@@ -24,13 +24,24 @@ public class Target : MonoBehaviour
         {
             if (gameObject.CompareTag("Bad"))
             {
-                gameManager.MinusLife();
+                if (gameManager.hasPowerupShield)
+                {
+                    gameManager.hasPowerupShield = false;
+                }
+                else
+                {
+                    gameManager.MinusLife();
+                }
             }
             else if (gameObject.CompareTag("Good"))
             {
                 gameManager.UpdateScore(points);
             }
-
+            else if (gameObject.CompareTag("Shield"))
+            {
+                gameManager.hasPowerupShield = true;
+            }
+ 
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
             Destroy(gameObject);
         }
